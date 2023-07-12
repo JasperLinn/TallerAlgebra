@@ -12,7 +12,7 @@ def vectoreslinealmenteindependientes(v1, v2):
     rank = np.linalg.matrix_rank(matrix)
 
     # Revisa si el rango de la matriz es igual al número de vectores (Para este punto son 3 vectores)
-    if rank == 3:
+    if rank == 2:
         return 'Los vectores son Linealmente Independientes'
     else:
         return 'los vectores son Linealmente Dependientes'
