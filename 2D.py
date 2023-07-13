@@ -1,8 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from numpy.polynomial.polynomial import Polynomial
-
-A = np.array([[[[[[[56, 168], [112, 224], [28, 392], [56 / 3, 280], [196, 140], [140, 504], [84, 33.6]]]]]]])
 B = np.array([[[[[[56 ** 6, 56 ** 5, 56 ** 4, 56 ** 3, 56 ** 2, 56, 1],
                   [112 ** 6, 112 ** 5, 112 ** 4, 112 ** 3, 112 ** 2, 112, 1],
                   [28 ** 6, 28 ** 5, 28 ** 4, 28 ** 3, 28 ** 2, 28, 1],
@@ -23,7 +21,7 @@ coeficientes = [-8.32404858e+02, 1.07941884e+02, -3.30933033e+00, 4.34600809e-02
 polinomio1 = Polynomial(coef=coeficientes)
 m = np.linspace(0, 200, num=10000)
 plt.plot(m, polinomio1(m))
-W = np.array([[[[[[[56, 168], [112, 224], [28, 392], [56 / 3, 280], [196, 140], [140, 504], [84, 33.6]]]]]]]).reshape(7,2)
+W = np.array([[[[[[[56, 168], [112, 224], [28, 392], [56 / 3, 280], [196, 140], [140, 504], [84, 33.6]]]]]]]).reshape(7, 2)
 print(W)
 plt.scatter(W[:, 0], W[:, 1])
 plt.title("POLINOMIO Y SUS PUNTOS")
