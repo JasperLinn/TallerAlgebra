@@ -20,10 +20,11 @@ R = np.linalg.inv(B) @ C
 print("soluciones del sistema de ecuaciones", R)
 coeficientes = [-8.32404858e+02, 1.07941884e+02, -3.30933033e+00, 4.34600809e-02, -2.80588467e-04, 9.03587862e-07,
                 -1.19174736e-09]
-print("")
-print("coeficientes del polinomio de grado 6", coeficientes)
 polinomio1 = Polynomial(coef=coeficientes)
 m = np.linspace(0, 200, num=10000)
 plt.plot(m, polinomio1(m))
-plt.title("POLINOMIO")
+W = np.array([[[[[[[56, 168], [112, 224], [28, 392], [56 / 3, 280], [196, 140], [140, 504], [84, 33.6]]]]]]]).reshape(7,2)
+print(W)
+plt.scatter(W[:, 0], W[:, 1])
+plt.title("POLINOMIO Y SUS PUNTOS")
 plt.show()

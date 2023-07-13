@@ -1,5 +1,4 @@
 import numpy as np
-
 matrizA = np.array([[[4, 2, 3], [9, 5, 6], [7, 3, 4]]]).reshape(3,3)
 print("matriz A", matrizA)
 C = matrizA * 56

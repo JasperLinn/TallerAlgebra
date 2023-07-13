@@ -14,4 +14,4 @@ D= matrizB * 56
 print("ventas 2",D)
 F=np.transpose(D)
 print("ventas plátanos", F[2])
-print(np.max(F[2]))
+print("plaza central", np.max(F[2]))

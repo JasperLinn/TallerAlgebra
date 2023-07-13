@@ -19,4 +19,4 @@ print("Ventas semanales", E)
 
 print("Número total de ventas por puesto", np.sum(E, axis=1))
 print("")
-print("Puesto con mayor número de ventas", np.max(np.sum(E, axis=1)))
+print("Puesto con mayor número de ventas: plaza central", np.max(np.sum(E, axis=1)))
