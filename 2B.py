@@ -11,18 +11,9 @@ print("")
 E=np.linalg.solve(B, C)
 #print("solución sistema de ecuaciones", E)
 R=np.linalg.inv(B) @ C
-print("soluciones del sistema de ecuaciones", R)
+print("coeficientes del polinomio", R)
 
-coeficientes =  [-8.32404858e+02, 1.07941884e+02, -3.30933033e+00, 4.34600809e-02, -2.80588467e-04, 9.03587862e-07, -1.19174736e-09]
-polinomio1 = Polynomial(coef=coeficientes)
-m=np.linspace(0,200,num=10000)
-plt.plot(m, polinomio1(m))
-plt.show()
 
-A=np.array([[[[[[[56, 168],[112, 224],[28, 392],[56/3, 280],[196, 140],[140, 504],[84, 33.6]]]]]]]).reshape(7,2)
-print(A)
-plt.scatter(A[:, 0], A[:, 1])
-plt.show()
 
 
 
