@@ -13,4 +13,9 @@ print(D)
 print("")
 E=C+D
 print("Ventas semanales", E)
-print("ventas totales por fruta", np.sum(E, axis=0))
+F= E[1]
+print("")
+print("número de ventas en la semana en la Central", F)
+print("manzanas", F[0])
+print("naranjas", F[1])
+print("platanos", F[2])
