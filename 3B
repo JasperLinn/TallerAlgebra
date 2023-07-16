@@ -1,0 +1,57 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+def vectoreslinealmenteindependientes(v1, v2):
+    # Convierte los vectores en NumPy arrays
+    v1 = np.array(v1)
+    v2 = np.array(v2)
+
+    # Crea una matriz con los vectores como columnas
+    matrix = np.column_stack((v1, v2))
+
+    # Calcula el rango de la matriz
+    rank = np.linalg.matrix_rank(matrix)
+
+    # Revisa si el rango de la matriz es igual al número de vectores (Para este punto son 3 vectores)
+    if rank == 2:
+        return 'Los vectores son Linealmente Independientes'
+    else:
+        return 'los vectores son Linealmente Dependientes'
+
+# Vectores del problema (N=1)
+vector1 = [56, -3*56, 4*56]
+vector2 = [56/5, 56*3/7, 3*56/13]
+
+result = vectoreslinealmenteindependientes(vector1, vector2)
+
+print(result)
+
+a = -9*56*2/13 - 12*56*2/7; b = 4*56*2/5 - 3*56*2/13; c = 3*56*2/7 + 3*56*2/5
+
+# definicion del plano
+def f(x, y):
+    return a*x + b*y
+
+# Obtener los coeficientes A, B, C
+A = a;B = b;C = -c
+
+# obtener datos para el plano
+x = np.linspace(-10, 10, 100); y = np.linspace(-10, 10, 100)
+X, Y = np.meshgrid(x, y); Z = f(X, Y)
+
+# Obtener la ecuación del plano
+ecuacion = f"{A}(x - 0) + {B}(y - 0) + {C}*(z - 0) = 0"
+print("Ecuación del plano:", ecuacion)
+
+# Crear los ejes
+fig = plt.figure(); ax = fig.add_subplot(111, projection='3d')
+
+# Graficar el plano
+ax.plot_surface(X, Y, Z, alpha=0.5)
+
+# nombres de lo ejes
+ax.set_xlabel('EJE X');ax.set_ylabel('EJEY');ax.set_zlabel('EJE Z')
+
+# hacer visible el gráfico
+plt.show()
