@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-
 a = -9*56*2/13 - 12*56*2/7; b = 4*56*2/5 - 3*56*2/13; c = 3*56*2/7 + 3*56*2/5
 
 # definicion del plano
