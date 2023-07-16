@@ -9,7 +9,6 @@ print("")
 print(C)
 print("")
 E=np.linalg.solve(B, C)
-#print("solución sistema de ecuaciones", E)
 R=np.linalg.inv(B) @ C
 print("coeficientes del polinomio", R)
 
