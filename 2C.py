@@ -16,8 +16,7 @@ print("")
 print(C)
 print("")
 E = np.linalg.solve(B, C)
-R = np.linalg.inv(B) @ C
-print("soluciones del sistema de ecuaciones", R)
+print("soluciones del sistema de ecuaciones", E)
 coeficientes = [-8.32404858e+02, 1.07941884e+02, -3.30933033e+00, 4.34600809e-02, -2.80588467e-04, 9.03587862e-07,
                 -1.19174736e-09]
 print("")
