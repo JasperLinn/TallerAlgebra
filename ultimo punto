@@ -1,0 +1,33 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+
+a = -9*56*2/13 - 12*56*2/7; b = 4*56*2/5 - 3*56*2/13; c = 3*56*2/7 + 3*56*2/5
+
+# definicion del plano
+def f(x, y):
+    return a*x + b*y
+
+# Obtener los coeficientes A, B, C
+A = a;B = b;C = -c
+
+# obtener datos para el plano
+x = np.linspace(-10, 10, 100); y = np.linspace(-10, 10, 100)
+X, Y = np.meshgrid(x, y); Z = f(X, Y)
+
+# Obtener la ecuación del plano
+ecuacion = f"{A}(x - 0) + {B}(y - 0) + {C}*(z - 0) = 0"
+print("Ecuación del plano:", ecuacion)
+
+# Crear los ejes
+fig = plt.figure(); ax = fig.add_subplot(111, projection='3d')
+
+# Graficar el plano
+ax.plot_surface(X, Y, Z, alpha=0.5)
+
+# nombres de lo ejes
+ax.set_xlabel('EJE X');ax.set_ylabel('EJEY');ax.set_zlabel('EJE Z')
+
+# hacer visible el gráfico
+plt.show()
