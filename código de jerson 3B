@@ -1,0 +1,46 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+N = 56
+
+a = -9*N*2/13 - 12*N*2/7
+b = 4*N*2/5 - 3*N*2/13
+c = 3*N*2/7 + 3*N*2/5
+
+# Función que define el plano
+def f(x, y):
+    return a*x + b*y
+
+# Obtener los coeficientes A, B, C
+A = a
+B = b
+C = -c
+
+# Obtener la ecuación del plano
+equation = f"{A}(x - 0) + {B}(y - 0) + {C}*(z - 0) = 0"
+print("Ecuación del plano:", equation)
+print(" ")
+# Generar datos para el plano
+x = np.linspace(-10, 10, 100)
+y = np.linspace(-10, 10, 100)
+X, Y = np.meshgrid(x, y)
+Z = f(X, Y)
+
+# Crear la figura y los ejes
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Graficar el plano
+ax.plot_surface(X, Y, Z, alpha=0.5)
+
+# Etiquetas de los ejes
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
+
+# Título del gráfico
+ax.set_title('Plano que pasa por el origen')
+
+# Mostrar el gráfico
+plt.show()
