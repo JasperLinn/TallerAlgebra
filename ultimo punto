@@ -1,32 +1,62 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
+from sympy import Matrix
 
-a = -9*56*2/13 - 12*56*2/7; b = 4*56*2/5 - 3*56*2/13; c = 3*56*2/7 + 3*56*2/5
+N = 56
 
-# definicion del plano
-def f(x, y):
-    return a*x + b*y
+# Definir los vectores como columnas en una matriz
+v1 = np.array([N, 2*N, 6*N])
+v2 = np.array([7*N, 14*N, 48*N])
+v3 = np.array([-8*N, -16*N, -56*N])
 
-# Obtener los coeficientes A, B, C
-A = a;B = b;C = -c
+matrix = Matrix([v1, v2, v3])
+print(matrix)
 
-# obtener datos para el plano
-x = np.linspace(-10, 10, 100); y = np.linspace(-10, 10, 100)
-X, Y = np.meshgrid(x, y); Z = f(X, Y)
+# Aplicar la eliminación Gaussiana con pivoteo parcial
+rref_matrix, pivots = matrix.T.rref()
 
-# Obtener la ecuación del plano
-ecuacion = f"{A}(x - 0) + {B}(y - 0) + {C}*(z - 0) = 0"
-print("Ecuación del plano:", ecuacion)
+# Identificar los vectores que son combinación lineal de los demás
+dependent_vectors = []
+for i in range(rref_matrix.shape[0]):
+    if i not in pivots:
+        dependent_vectors.append(list(matrix.row(i)))
 
-# Crear los ejes
-fig = plt.figure(); ax = fig.add_subplot(111, projection='3d')
+# Imprimir los vectores que son combinación lineal de los demás y sus formas reducidas
+print("Vectores que son combinación lineal de los demás:")
+for i, vector in enumerate(dependent_vectors):
+    rref_vector = [entry.evalf() for entry in rref_matrix.row(i)]
+    print(f"Vector {i+1}: {vector} (Forma reducida: {rref_vector})")
 
-# Graficar el plano
-ax.plot_surface(X, Y, Z, alpha=0.5)
+# Convertir los vectores a formato numpy array para graficar
+li_vectors = np.array([list(matrix.row(i)) for i in pivots], dtype=float)
 
-# nombres de lo ejes
-ax.set_xlabel('EJE X');ax.set_ylabel('EJEY');ax.set_zlabel('EJE Z')
+# Crear la figura y los ejes
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
 
-# hacer visible el gráfico
+# Graficar los vectores linealmente independientes
+ax.quiver(0, 0, 0, li_vectors[:, 0], li_vectors[:, 1], li_vectors[:, 2])
+
+# Graficar los vectores que son combinación lineal de los demás
+for vector in dependent_vectors:
+    ax.quiver(0, 0, 0, vector[0], vector[1], vector[2], color='r', alpha=0.5)
+
+# Obtener los límites de los ejes
+min_value = float(np.min(np.concatenate((li_vectors, dependent_vectors), axis=0)))
+max_value = float(np.max(np.concatenate((li_vectors, dependent_vectors), axis=0)))
+
+# Configurar los límites de los ejes
+ax.set_xlim([min_value, max_value])
+ax.set_ylim([min_value, max_value])
+ax.set_zlim([min_value, max_value])
+
+# Etiquetas de los ejes
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
+
+# Título del gráfico
+ax.set_title('Vectores linealmente independientes y combinación lineal')
+
+# Mostrar el gráfico
 plt.show()
